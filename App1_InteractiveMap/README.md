@@ -1,4 +1,4 @@
-# PythonMegaCoursePractice: App 1: InteractiveMap
+# PythonMegaCoursePractice: App 1: Interactive Map
 This app was written using Python and the ```libraries```, ```folium```, ```pandas```, ```screeninfo```, and ```requests``` modules. The purpose is to generate an HTML file for a map, this map will display a number of interesting bits of information:
 * Western US Volcanoes
 * US State Capital and US National Capital
