@@ -1,5 +1,7 @@
 from decimal import Decimal
+from deprecated import deprecated
 
+@deprecated(version='0.4', reason="Not necessary anymore for API location coordinate managment.")
 def extract_until_char(input_str, delimiter):
     if(input != None and delimiter != None):
         # Extract the substring up to and including the delimiter
@@ -10,6 +12,7 @@ def extract_until_char(input_str, delimiter):
         return ""    
     return (Decimal(result), input_str)
 
+@deprecated(version='0.4', reason="Not necessary anymore for API location coordinate managment.")
 def fixCoord(crd):
     crdStr = str(crd).replace(' ', '').replace('N', '').replace('E', '').replace('′', 'D').replace('(\"', '').replace('\",)', '').replace('(\'', '').replace('\',)', '').replace('(', '').replace(')', '').replace("\\", '').replace(",", '').replace('\'', 'D').replace('\"', 'R').replace("u200a", '').replace("\u200a", '').replace('xa0', '').replace('\xa0', '')
     if('–' in crdStr):
