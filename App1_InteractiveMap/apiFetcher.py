@@ -1,42 +1,26 @@
 import requests
-import pandas as pd
+import pandas
 
-def apiFetcher(api_url, given_headers=None):
+def apiFetcher(api_url, given_headers):
     # API endpoint and headers
     url = api_url
     headers = given_headers
 
     # Fetch data from the API
-    try:
-        if headers:
-            response = requests.get(url, headers=headers)
-        else:
-            response = requests.get(url)
+    response = requests.get(url, headers=headers)
 
-        # Ensure the request was successful
-        if response.status_code == 200:
-            data = response.json()  # Directly get the JSON response
-            
-            # If data is a dictionary and has a 'results' key
-            if isinstance(data, dict):
-                results = data.get('results', data)  # Use 'results' if present, otherwise use data
-            
-            # If data is a list, use it directly
-            elif isinstance(data, list):
-                results = data
-            
-            else:
-                print("Unexpected data format")
-                return None
+    # Ensure the request was successful
+    if response.status_code == 200:
+        data = response.json()  # Directly get the JSON response
+        results = data.get('results', [])  # Extract the 'results' key if it exists
 
-            # Convert to DataFrame
-            apidf = pd.DataFrame(results)
-                        
-            return apidf
+        # Convert to DataFrame
+        if isinstance(results, list) and len(results) > 0 and isinstance(results[0], dict):
+            apidf = pandas.DataFrame(results)
         else:
-            print(f"Failed to fetch data: {response.status_code}")
-            return None  # Return None if the request failed
-            
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return None  # Return None in case of exception
+            apidf = pandas.DataFrame()
+
+        return apidf
+    else:
+        print(f"Failed to fetch data: {response.status_code}")
+        return pandas.DataFrame()  # Return an empty DataFrame in case of failure
