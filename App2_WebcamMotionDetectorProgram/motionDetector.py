@@ -14,7 +14,7 @@ timesActive = []
 data =[]
 
 # If q or escape key are pressed
-while key != ord('q') and key != ord('\x1b'):
+while True:
     check, frame = video.read()
     if not check:
         print("Failed to capture image")
@@ -73,8 +73,11 @@ while key != ord('q') and key != ord('\x1b'):
     # cv2.imshow("Threshold Frame", thresh_frame)
     cv2.imshow("Colored Frame", frame)
 
-    
     key = cv2.waitKey(1)
+    if key == ord('q') or key == ord('\x1b'):
+        if(status == 1):
+            timesActive.append(datetime.now())
+        break
 print(statusList)
 print()
 print(timesActive)
@@ -87,5 +90,3 @@ for i in range(0, len(timesActive), 2):
 
 df = pandas.DataFrame(data)
 df.to_csv("./App2_WebcamMotionDetectorProgram/motion_capture_times.csv", index=False)
-
-df.to_csv("./App2_WebcamMotionDetectorProgram/motion_capture_times.csv")
