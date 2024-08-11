@@ -1,11 +1,15 @@
-import cv2
-import time
+import cv2, time, pandas
+from datetime import datetime
 
 video = cv2.VideoCapture(0)
 time.sleep(2)
 # Instantiate needed vars
 first_frame = None
 key = None
+statusList = [None, None]
+timesActive = []
+data =[]
+# df = pandas.DataFrame(columns=["Start", "End"])
 
 # If q or escape key are pressed
 while key != ord('q') and key != ord('\x1b'):
@@ -13,6 +17,9 @@ while key != ord('q') and key != ord('\x1b'):
     if not check:
         print("Failed to capture image")
         continue
+    
+    # Motion status
+    status = 0
     
     # Generates a copy of the frame in greyscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -37,20 +44,38 @@ while key != ord('q') and key != ord('\x1b'):
     
     # Trim number of contour to be only bigger than 1000 pixels
     for contour in cnts:
-        if (cv2.contourArea(contour) < 1000): # If countour is bigger than 1000 px
+        if (cv2.contourArea(contour) < 10000): # If countour is bigger than 1000 px
             continue
+        status = 1 # Motion status triggered
         (x, y, w, h) = cv2.boundingRect(contour)  # Then create countor rectangle
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)
     
-    cv2.imshow("First Frame", first_frame)
-    cv2.imshow("Gray Frame", gray)
-    cv2.imshow("Delta Frame", delta_frame)
-    cv2.imshow("Threshold Frame", thresh_frame)
+    statusList.append(status)
+    
+    if statusList[-1] == 1 and statusList[-2] == 0:
+        timesActive.append(datetime.now())
+    if statusList[-1] == 0 and statusList[-2] == 1:
+        timesActive.append(datetime.now())
+    
+    # cv2.imshow("First Frame", first_frame)
+    # cv2.imshow("Gray Frame", gray)
+    # cv2.imshow("Delta Frame", delta_frame)
+    # cv2.imshow("Threshold Frame", thresh_frame)
     cv2.imshow("Colored Frame", frame)
 
-    print("Delta frame min:", delta_frame.min())
-    print("Delta frame max:", delta_frame.max())
+    
     key = cv2.waitKey(1)
-
+print(statusList)
+print()
+print(timesActive)
 video.release() # This will stop using the camera
 cv2.destroyAllWindows()
+
+for i in range(0, len(timesActive), 2):
+    # df = df.append({"Start":timesActive[i], "End":timesActive[i+1]}, ignore_index=True)
+    data.append({"Start": timesActive[i], "End": timesActive[i+1]})
+
+df = pandas.DataFrame(data)
+df.to_csv("./App2_WebcamMotionDetectorProgram/motion_capture_times.csv", index=False)
+
+df.to_csv("./App2_WebcamMotionDetectorProgram/motion_capture_times.csv")
