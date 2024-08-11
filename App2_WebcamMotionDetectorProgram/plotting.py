@@ -1,11 +1,7 @@
-# from motionDetector import df
+from motionDetector import df
 from bokeh.plotting import figure
 from bokeh.io import output_file, show
 from bokeh.models import FixedTicker, HoverTool, ColumnDataSource
-
-#for testing only delete after
-import pandas
-df = pandas.read_csv("./App2_WebcamMotionDetectorProgram/motion_capture_times.csv", parse_dates=["Start", "End"])
 
 
 # Convert to string for proper hover text
