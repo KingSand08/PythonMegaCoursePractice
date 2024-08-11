@@ -2,14 +2,16 @@ import cv2, time, pandas
 from datetime import datetime
 
 video = cv2.VideoCapture(0)
+
+# There must be a delay to properly capture the first frame, if immediate the first frame will be blank
 time.sleep(2)
+
 # Instantiate needed vars
 first_frame = None
 key = None
 statusList = [None, None]
 timesActive = []
 data =[]
-# df = pandas.DataFrame(columns=["Start", "End"])
 
 # If q or escape key are pressed
 while key != ord('q') and key != ord('\x1b'):
@@ -28,10 +30,12 @@ while key != ord('q') and key != ord('\x1b'):
     gray = cv2.GaussianBlur(gray, (21, 21), 0) # GaussianBlur(frame to be blurred, (width, hieght) -> both width and 
                                                       # height of gaussian blur, so parameters of blurriess ), then last param
                                                       # is standard deviation (0 is commonly used).
+    # Capture first frame if on the first itteration
     if first_frame is None:
         first_frame = gray
         continue
     
+    # Create delta and thresh frames for proper motion detection
     delta_frame = cv2.absdiff(first_frame, gray)
     thresh_frame = cv2.threshold(delta_frame, 30, 255, cv2.THRESH_BINARY)[1] # This is a tuple, but we only want to access the 
                                                                              # second index as that is where the actual frame is returned from the threshold method
@@ -50,8 +54,14 @@ while key != ord('q') and key != ord('\x1b'):
         (x, y, w, h) = cv2.boundingRect(contour)  # Then create countor rectangle
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)
     
+    # Update status list with current status
     statusList.append(status)
     
+    # Ensure status list only hols current and previous values (to secure memory for long program runtimes), 
+    # will ONLY effect the itteration after the code below is triggered
+    statusList = statusList[-2:]
+    
+    # Updates the server list
     if statusList[-1] == 1 and statusList[-2] == 0:
         timesActive.append(datetime.now())
     if statusList[-1] == 0 and statusList[-2] == 1:
