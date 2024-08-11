@@ -28,5 +28,5 @@ f.add_tools(hover)
 q = f.quad(left = "Start", right = "End", bottom = 0, top = 1, color="green", source = cds)
 
 # Display and save figure object
-output_file("time_interval.html")
+output_file("./App2_WebcamMotionDetectorProgram/time_interval.html")
 show(f)
