@@ -9,7 +9,7 @@ def app():
     wp = jp.QuasarPage()    # wp == Webpage obj
     h1 = jp.QDiv(           # Contains innate styling from the Quasar lib to make it "look modern and easy to style with" - Ardit
         a=wp,
-        text="Analyssis of Course Reviews",
+        text="Analysis of Course Reviews",
         classes="text-h3 text-center q-pa-lg"
     )
     p1= jp.QDiv(
