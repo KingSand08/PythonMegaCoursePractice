@@ -1,0 +1,4 @@
+([('bookStoreApp_frontend',
+   '/Users/sand/Documents/Programs/Python '
+   'Projects/PythonMegaCoursePractice/App5_GUI_App/dist/bookStoreApp_frontend',
+   'EXECUTABLE')],)
