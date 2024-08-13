@@ -7,12 +7,19 @@ def resource_path(relative_path):
     else:
         resolved_path = os.path.abspath(os.path.join(os.getcwd(), relative_path))
     return resolved_path
-
-
 DB_PATH = resource_path("db/books.db")
+
+def verifyPathIntegrity():
+    global DB_PATH
+    try:
+        conn=sqlite3.connect(DB_PATH)
+        conn.close()
+    except sqlite3.OperationalError as e:
+        DB_PATH = resource_path("App5_GUI_App/db/books.db")
 
 
 def connect():
+    verifyPathIntegrity()
     conn=sqlite3.connect(DB_PATH)
     cur=conn.cursor()
     cur.execute("CREATE TABLE IF NOT EXISTS book (id INTEGER PRIMARY KEY, title text, author text, year text, isbn integer)")

@@ -39,7 +39,7 @@ exe = EXE(
 )
 app = BUNDLE(
     exe,
-    name='bookStoreApp_frontend.app',
+    name='Book Store Manager (arm64).app',
     icon='assets/icon.ico',
     bundle_identifier=None,
 )
