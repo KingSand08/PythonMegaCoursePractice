@@ -1,0 +1,46 @@
+# kv language worsk on a hierarchical level
+# kivy imports libraries implictly (as called)
+<LoginScreen>:
+    # A grid layour is the type of area which we will have all the other widgets. So a
+        # method of laying out the widgets. Grids can be layered.
+    GridLayout: # Main Screen Container (1 column only (this is also the default col #))
+        cols:1 # Columns MUST be explicitly typed or cols will be 0
+        GridLayout: # Upper login screen 
+            cols:1
+            Label:
+                text: "User Login"
+            TextInput:
+                hint_text: "Username"
+            TextInput:
+                hint_text: "Password"
+        GridLayout: # Lower sign-up / forgot password footer
+            cols: 2
+            Button:
+                text: "Forgot Password?"
+            Button:
+                text: "Sign up?"
+                on_press: root.sign_up() # root refers to the class of rule widget, which
+                    # in this case is the LoginScreen. Will use methods in the python
+                    # functional file.
+<SignUpScreen>:
+    GridLayout:
+        cols:1
+        Label:
+            text: "Sign up for a space journey!"
+        TextInput:
+            hint_text: "New Username"
+        TextInput:
+            hint_text: "New Password"
+        Button:
+            text: "Submit"
+            # on_press: root.sign_up()
+        Button:
+            text: "Sign in"
+            on_release: app.root.current = "login_screen"
+
+# Invisible widget that keeps a record of all the available screens of the app 
+<RootWidget>:
+    LoginScreen: 
+        name: "login_screen" # This name is necessary for python file later on
+    SignUpScreen:
+        name: "sign_up_screen"
