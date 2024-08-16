@@ -29,10 +29,15 @@
             text: "Sign up for a space journey!"
         TextInput:
             hint_text: "New Username"
+            id: username
         TextInput:
             hint_text: "New Password"
+            id: password
         Button:
             text: "Submit"
+            # ids in this function are actually derrived from kivy and is a dictory that
+                #  contains all the ids along with their values here.
+            on_press: root.add_user(root.ids.username.text, root.ids.password.text)
             # on_press: root.sign_up()
         Button:
             text: "Sign in"

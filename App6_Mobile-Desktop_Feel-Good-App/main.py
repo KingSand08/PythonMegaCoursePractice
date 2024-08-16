@@ -15,11 +15,12 @@ class LoginScreen(Screen):
                 # from Screen class parent to instance. current = attribute of manager 
                 # function. This current attriubte will be passed screen you want to go to.
 
-class SignUpScreen(Screen):
-    pass
-
 class RootWidget(ScreenManager):
     pass
+
+class SignUpScreen(Screen):
+    def add_user(self, uname, pword):
+        print(uname, pword)
 
 # Hierarchy of kivy apps, App -> ScreenManager(RootWidget) -> Screen (ex: login screen) 
 class MainApp(App):
