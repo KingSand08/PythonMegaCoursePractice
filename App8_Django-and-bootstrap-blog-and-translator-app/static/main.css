@@ -1,0 +1,49 @@
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    background-color: #006666;
+    color: #e6ffff;
+    overflow: hidden;
+    text-align: center;
+}
+
+.container h1 {
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    color: #DDCCEE;
+    margin-top: 80px; 
+}
+
+.container form {
+    margin: 30px;
+}
+
+.container input {
+    width: 350px; /* Equivelent to 350px like lecture */
+    height: 15px; /* Equivelent to 15px like lecture */
+    font-size: 15px; /* Equivelent to 15px like lecture */
+    margin: 15px; /* Equivelent to 2px like lecture */
+    padding: 20px; /* Equivelent to 20px like lecture */
+    transition: all 0.2s ease-in-out; /* NON FUNCTIONAL */
+}
+
+.container button {
+    width: 70px;
+    height: 30px;
+    background-color: steelblue;
+    margin: 4px;
+    padding: 4px;
+    color: #d8d3dd;
+    border-radius: 10px;
+}
+
+.container p {
+    margin: 100px;
+    font-size: 20px;
+}
