@@ -19,5 +19,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('blog.urls')) # The empty string denotes the whole directory, the other is what else denotes the url
+    path('', include('blog.urls')), # The empty string denotes the whole directory, the other is what else denotes the url
+    path('translate/', include('translator.urls')) # In translate url
 ]

@@ -1,30 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container">
-      {% for post in post_list %}
+  <div class="container">
+    {% for post in post_list %}
       <!-- Display format for blogs -->
       <div class="card m-3">
         <div class="card-body">
-          <h2 class="card-title">{{post.title}}</h2>
+          <h2 class="card-title">{{ post.title }}</h2>
           <!-- For displaying a blog's' title -->
           <p class="card-text" style="font-size: 0.9em;">
             {% if post.contents|length > 400 %}
-              {{ post.contents|slice:"400"}}
+              {{ post.contents|slice:'400' }}
               <span class="fw-bold">...</span>
             {% else %}
               {{ post.contents }}
             {% endif %}
           </p>
           <!-- For displaying a blog's' title, flood will cutoff at 400 chars -->
-          <p class="card-text fst-italic fw-medium">Author: {{post.author | title}}</p>
+          <p class="card-text fst-italic fw-medium">Author: {{ post.author|title }}</p>
           <!-- For displaying a blog's' author -->
-          <p class="card-text fst-italic fw-light" style="font-size: 0.75em;">Created On:{{post.date_created}}</p>
+          <p class="card-text fst-italic fw-light" style="font-size: 0.75em;">Created On: {{ post.date_created }}</p>
           <!-- For displaying a blog's' date-time -->
-          <a class="btn btn-primary" href="{% url 'blog_view' post.slug %}">
-            Read More
-          </a>
+          <a class="btn btn-primary" href="{% url 'blog_view' post.slug %}">Read More</a>
         </div>
       </div>
-      {% endfor %}
-    </div>
-{% endblock content %}
+    {% endfor %}
+  </div>
+{% endblock %}
