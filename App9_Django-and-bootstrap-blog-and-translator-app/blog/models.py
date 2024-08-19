@@ -8,7 +8,7 @@ STATUS =((0, 'Draft'), (1, 'Publish')) # Status of the choice status for a post
 class Post(models.Model): # Model is a specific class that inherits from django. It is designed to contain fields with data
     title = models.CharField(max_length=200) # Title of the blog post
     contents = models.TextField() # Text of the blog post (using TextField instead as it holds more chars)
-    date_created = models.DateField(auto_now_add=True) # Date the blog post was made, when blog post create hits create button the time will be
+    date_created = models.DateTimeField(auto_now_add=True) # Date the blog post was made, when blog post create hits create button the time will be
         # generated and placed in date_created for the blog post instance here.
     slug = models.SlugField(max_length=200, unique=True) # Recording the part of the url after the domain
     author = models.ForeignKey(to=User, on_delete=models.CASCADE) # Is the author of the blog post, not ui input, but inserted from program.

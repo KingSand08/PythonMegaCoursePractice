@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    {% for post in post_list %}
+    <!-- Display format for blogs -->
+    <a href="{% url 'blog_view' post.slug %}">
+      <div
+        class="blog-block"
+        style="outline-style: solid; padding: 0.5em; margin-bottom: 1em"
+      >
+        <h2>{{post.title}}</h2>
+        <!-- For displaying a blog's' title -->
+        <h4>Author: {{post.author}}</h4>
+        <!-- For displaying a blog's' author -->
+        <p>Created On:{{post.date_created}}</p>
+        <!-- For displaying a blog's' date-time -->
+      </div>
+    </a>
+    {% endfor %}
+  </body>
+</html>
