@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>{{object.title}}</h1>
+  <div class="container pt-4">
+    <h1>{{ object.title }}</h1>
     <!-- This is dynamic and filled with the title of the blog -->
-    <p>{{object.contents}}</p>
+    <p>{{ object.contents }}</p>
     <!-- This is dynamic and filled with the content of the blog -->
-    <p>{{object.author}}</p>
+    <p>{{ object.author }}</p>
     <!-- This is dynamic and filled with the author of the blog -->
-{% endblock content %}
+  </div>
+{% endblock %}
