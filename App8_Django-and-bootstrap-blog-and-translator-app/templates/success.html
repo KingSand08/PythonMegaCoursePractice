@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <title>Data Collector App</title>
+
 <head>
     <link href="../static/main.css" rel="stylesheet">
 </head>
@@ -8,7 +9,11 @@
 <body>
     <div class="container">
         <p>Thank you for your submission!<br>
-        You will recieve an email with the survey results shortly.</p>
+            You will receive an email with the survey results shortly.</p>
+        <!-- Move disclaimer content outside of the previous <p> -->
+        <div class="disclaimer">
+            {{text | safe}}
+        </div>
     </div>
 </body>
 

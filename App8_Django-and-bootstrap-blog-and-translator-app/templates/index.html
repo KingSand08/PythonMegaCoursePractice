@@ -1,19 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-    <title>Data Collector App</title>
-    <head>
-        <link href="../static/main.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="container">
-            <h1>Collecting Height</h1>
-            <h3>Please fill the entries to get population statistics on height</h3>
-            <form action="{{url_for('success')}}", methods='POST'>
-                
-                <input title="your email will be safe with us" placeholder="Enter your email address" type="email" name="email_name" required> <br>
-                <input title="your data will be safe with us" placeholder="Enter your height in cm" type="number" min="50" max="300" step="0.1" name="height_name" required> <br>
-                <button type="submit"> Submit </button>
-            </form>
+<title>Data Collector App</title>
+
+<head>
+    <link href="../static/main.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Collecting Height</h1>
+        <h3>Please fill the entries to get population statistics on height</h3>
+        <div class="message">
+            {{text | safe}}
         </div>
-    </body>
+        <form action="{{url_for('success')}}" method="POST" enctype="multipart/form-data">
+            <input title="your email will be safe with us" placeholder="Enter your email address" type="email"
+                name="email_name" id="email" required><br>
+            <input title="your data will be safe with us" placeholder="Enter your height in cm" type="number" min="50"
+                max="300" step="0.1" name="height_name" id="height" required><br>
+            <h4 class="upload-txt">Upload CSV to give many inputs</h4>
+            <input title="Upload Many" type="file" name="file" id="file" onchange="checkForm()"><br>
+            <button type="submit" id="submit-button">Submit</button>
+        </form>
+        </form>
+    </div>
+    <script>
+        const emailInput = document.getElementById('email');
+        const heightInput = document.getElementById('height');
+        const fileInput = document.getElementById('file');
+        const submitButton = document.getElementById('submit-button');
+
+        function checkForm() {
+            if (fileInput.value !== "") {
+                emailInput.required = false;
+                heightInput.required = false;
+            } else if (emailInput.value !== "" && heightInput.value !== "") {
+                emailInput.required = true;
+                heightInput.required = true;
+            } else {
+                emailInput.required = true;
+                heightInput.required = true;
+            }
+        }
+
+        // Listen for changes in the form inputs
+        emailInput.addEventListener('input', checkForm);
+        heightInput.addEventListener('input', checkForm);
+        fileInput.addEventListener('change', checkForm);
+
+
+        // If redirect can immediately send file again (for instance if error)
+        window.onload = checkForm;
+    </script>
+</body>
+
 </html>

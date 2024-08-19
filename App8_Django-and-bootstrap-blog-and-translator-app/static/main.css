@@ -1,4 +1,5 @@
-html, body{
+html,
+body {
     height: 100%;
     margin: 0;
 }
@@ -17,7 +18,7 @@ html, body{
     font-family: Arial, sans-serif;
     font-size: 30px;
     color: #DDCCEE;
-    margin-top: 80px; 
+    margin-top: 80px;
 }
 
 .container form {
@@ -25,12 +26,18 @@ html, body{
 }
 
 .container input {
-    width: 350px; /* Equivelent to 350px like lecture */
-    height: 15px; /* Equivelent to 15px like lecture */
-    font-size: 15px; /* Equivelent to 15px like lecture */
-    margin: 15px; /* Equivelent to 2px like lecture */
-    padding: 20px; /* Equivelent to 20px like lecture */
-    transition: all 0.2s ease-in-out; /* NON FUNCTIONAL */
+    width: 350px;
+    /* Equivelent to 350px like lecture */
+    height: 15px;
+    /* Equivelent to 15px like lecture */
+    font-size: 15px;
+    /* Equivelent to 15px like lecture */
+    margin: 15px;
+    /* Equivelent to 2px like lecture */
+    padding: 20px;
+    /* Equivelent to 20px like lecture */
+    transition: all 0.2s ease-in-out;
+    /* NON FUNCTIONAL */
 }
 
 .container button {
@@ -46,4 +53,31 @@ html, body{
 .container p {
     margin: 100px;
     font-size: 20px;
+}
+
+.message {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: #ff9999;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.upload-txt {
+    margin-bottom: -10px;
+}
+
+input[type="file"] {
+    margin-bottom: 0px;
+    padding-bottom: 20px;
+}
+
+.disclaimer {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ff9999;
+    font-weight: bold;
+    font-style: italic;
+
 }

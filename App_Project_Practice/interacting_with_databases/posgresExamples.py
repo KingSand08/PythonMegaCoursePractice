@@ -60,7 +60,7 @@ def createTable(db_name):
     # Create cursor object to DB
     cur=conn.cursor()
 
-    # Subit an SQL query
+    # Submit an SQL query
     # TYPES :: -> TEXT = String, INTEGER = int, REAL = float
     cur.execute("CREATE TABLE IF NOT EXISTS store (item TEXT, quantity INTEGER, price REAL)")
 
