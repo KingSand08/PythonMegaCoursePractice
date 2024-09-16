@@ -10,10 +10,10 @@ body {
  */
 
 header {
-  background-color: #87dfb0;
+  background-color: #358c5e;
   height: 35px;
   width: 100%;
-  opacity: .9;
+  opacity: 0.9;
   margin-bottom: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -43,18 +43,18 @@ header h1.logo:hover {
 
 div.home {
   padding: 10px 20px 30px 20px;
-  background-color: #E6E6FA;
+  background-color: #e6e6fa;
   -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
 }
 
 div.about {
   padding: 10px 20px 30px 20px;
   background-color: #ebe6fa;
   -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
 }
 
 h2 {
@@ -87,6 +87,6 @@ h3 {
 }
 
 .menu li a {
-  color: #444;
+  color: #ededed;
   text-decoration: none;
 }
