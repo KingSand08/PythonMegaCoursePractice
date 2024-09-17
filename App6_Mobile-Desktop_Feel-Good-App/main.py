@@ -16,6 +16,11 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 
 Builder.load_file('design.kv') # Link the design.kv file
 
+# Gets proper relative path of a given file
+def get_file_path(relative_path):
+    base_path = Path(__file__).resolve().parent
+    return base_path / relative_path
+
 class LoginScreen(Screen):
     def sign_up(self):
         self.manager.transition.direction= 'left'
@@ -25,7 +30,7 @@ class LoginScreen(Screen):
                 # function. This current attriubte will be passed screen you want to go to.
     def login(self, uname, pword):
         if(uname != "" or pword != ""):
-            with open("users.json", 'r') as file:
+            with open(get_file_path("users.json"), 'r') as file:
                 users = json.load(file)
             if uname in users and users[uname]['password'] == pword:
                 self.manager.transition.direction= 'left'
@@ -41,12 +46,12 @@ class RootWidget(ScreenManager):
 class SignUpScreen(Screen):
     def add_user(self, uname, pword):
         if(uname != "" or pword != ""):
-            with open("users.json", 'r') as file:
+            with open(get_file_path("users.json"), 'r') as file:
                 users = json.load(file)
             users[uname] = {'username' : uname, 'password' : pword,
                             'created' : datetime.now().strftime("%Y-%m-%d %H-%M-%S")}
             print(users)
-            with open("users.json", 'w') as file:
+            with open(get_file_path("users.json"), 'w') as file:
                 json.dump(users, file)
             self.manager.current = "sign_up_screen_success"
         else:
@@ -68,11 +73,11 @@ class LoginScreenSuccess(Screen):
         
     def get_quote(self, feel):
         feel = feel.lower()
-        available_feelings = glob.glob("quotes/*txt")
+        available_feelings = glob.glob(str(get_file_path("quotes/*txt")))
         available_feelings = [Path(filename).stem for filename in available_feelings]
         
         if(feel in available_feelings):
-            with open(f"quotes/{feel}.txt", 'r') as file:
+            with open(get_file_path(f"quotes/{feel}.txt"), 'r') as file:
                 quotes = file.readlines()
             self.ids.quote.text = random.choice(quotes) # gets list and returns random output
         else : 
