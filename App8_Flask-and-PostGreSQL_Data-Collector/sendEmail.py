@@ -1,9 +1,11 @@
-import smtplib
+import smtplib, os
 from email.mime.text import MIMEText
+from dotenv import load_dotenv
 
 def sendEmail(email, height, averageHeight, submissionCount):
-        fromEmail = "dev.constructor.reach@gmail.com"
-        fromPassword = "pejw jnwz xenh njjg"
+        load_dotenv();
+        fromEmail = os.getenv("EMAIL")
+        fromPassword = os.getenv("PASSWORD")
         toEmail=email
         
         subject="Height Collector: Survey Response"
