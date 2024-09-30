@@ -1,4 +1,4 @@
-# Python Mega Course Practice -> App #: ...
+# Python Mega Course Practice -> App 6: Mobile/Desktop Feel Good App
 
 This mobile app was written using Python the `kivy`, `jsob`, `glob`, `random`, `pathlib`, `datetime` modules, and provided lecture `hoverable.py` file. The purpose of this mobile app is to provide quotes to the user based on how they are feeling at the given moment. The available emotion inputs with proper responses are: (happy, sad, and unloved). Specifically this has the following features:
 
